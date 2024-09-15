@@ -1,21 +1,37 @@
 import './App.css';
 import PlayingCard from './components/Card/PlayingCard.tsx';
+import Card from './lib/Card.ts';
+import CardDeck from './lib/CardDeck.ts';
+import {useState} from 'react';
 
-const ranks: string[] = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
-const suits: string[] = ['diams', 'hearts', 'clubs', 'spades'];
+const App = () => {
+    const [cards, setCards] = useState<{ rank: string, suit: string }[]>([]);
 
-const App = () => (
-    <>
-        <div className="container">
-            {
-                ranks.map((rank) => (
-                    suits.map(suit => {
-                        return <PlayingCard key={`${rank}-${suit}`} rank={rank} suit={suit}/>;
-                    })
-                ))
+    const dealCards = (): void => {
+        const deck: CardDeck = new CardDeck();
+        const drawCards: Card[] = deck.getCards(5);
+        setCards(drawCards);
+    };
+
+    return (
+        <>
+            {cards.length === 0 ? (
+                <div className="container">
+                    <button type={'button'} onClick={dealCards}>Deal cards</button>
+                </div>
+            ) : (
+                <div className="container">
+                    <button type={'button'} onClick={dealCards}>Deal cards again</button>
+                    <div className="playingCards faceImages">
+                        {cards.map((card, index) => (
+                            <PlayingCard key={index} rank={card.rank} suit={card.suit}/>
+                        ))}
+                    </div>
+                </div>
+            )
             }
-        </div>
-    </>
-);
+        </>
+    );
+};
 
 export default App;
