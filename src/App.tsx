@@ -31,19 +31,19 @@ const App = () => {
         <>
             {
                 cards.length === 0 ? (
-                    <div className="container">
-                        <button type={'button'} onClick={dealCards}>Deal cards</button>
+                    <div className='container'>
+                        <button type={'button'} className={'deal-btn'} onClick={dealCards}>Deal cards</button>
                     </div>
                 ) : (
-                    <div className="container">
-                        <button type={'button'} onClick={dealCards}>Deal cards again</button>
-                        <div className="playingCards faceImages">
+                    <div className='container'>
+                        <button type={'button'} className={'deal-btn'} onClick={dealCards}>Deal cards again</button>
+                        <div className='playingCards faceImages'>
                             {cards.map((card, index) => (
                                 <PlayingCard key={index} rank={card.rank} suit={card.suit}/>
                             ))}
                         </div>
-                        <h4>
-                            {hand.getOutcome()}
+                        <h4 className={'combination'}>
+                           Current hand: {hand.getOutcome()}
                         </h4>
                     </div>
                 )
