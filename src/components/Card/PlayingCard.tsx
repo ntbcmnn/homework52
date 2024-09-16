@@ -12,7 +12,7 @@ const symbols: { [key: string]: string } = {
     spades: '♠'
 };
 
-const PlayingCard: React.FC<ICard> = ({ rank, suit }) => {
+const PlayingCard: React.FC<ICard> = ({rank, suit}) => {
     return (
         <span className={`card rank-${rank.toLowerCase()} ${suit}`}>
             <span className="rank">{rank}</span>
