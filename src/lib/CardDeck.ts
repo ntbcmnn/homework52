@@ -32,7 +32,7 @@ class CardDeck {
 
             if (card) {
                 cardsAmount.push(card);
-            }
+            } else break;
         }
         return cardsAmount;
     }
